@@ -11,12 +11,12 @@ public class Order {
     private Customer customer;
     private List<OrderItem> orderItems;
     private BigDecimal grandTotal;
-    private BigDecimal totalVipDiscountApplied; // ยอดส่วนลด VIP ทั้งหมดที่ใช้
-
+    private BigDecimal totalVipDiscountApplied;     
     private static final BigDecimal VIP_DISCOUNT_RATE = new BigDecimal("0.15"); // ส่วนลด VIP 15%
 
+    // Constructor
     public Order(Customer customer, List<OrderItem> orderItems) {
-        this.orderId = UUID.randomUUID().toString().substring(0, 8); // สร้าง ID คำสั่งซื้อแบบสุ่ม
+        this.orderId = UUID.randomUUID().toString().substring(0, 8);
         this.customer = customer;
         this.orderItems = orderItems;
         this.totalVipDiscountApplied = BigDecimal.ZERO;
@@ -28,9 +28,9 @@ public class Order {
         totalVipDiscountApplied = BigDecimal.ZERO;
 
         for (OrderItem item : orderItems) {
-            // ราคาต่อหน่วยของสินค้าหลังการปรับตามประเภท (เช่น EBook ลด 10%, AudioBook บวก 5%)
+            //  EBook ลด 10%, AudioBook บวก 5%
             BigDecimal itemPriceAfterTypeAdjustment = item.getItemPriceBeforeVipDiscount();
-            // ราคารวมของรายการสินค้านี้ (ยังไม่รวมส่วนลด VIP)
+            // ยังไม่รวมส่วนลด VIP
             BigDecimal lineItemPriceBeforeVip = itemPriceAfterTypeAdjustment.multiply(new BigDecimal(item.getQuantity()));
 
             if (customer.isVIP()) {
@@ -43,7 +43,6 @@ public class Order {
                 totalVipDiscountApplied = totalVipDiscountApplied.add(lineItemPriceBeforeVip.subtract(lineItemPriceAfterVip));
                 currentTotal = currentTotal.add(lineItemPriceAfterVip);
             } else {
-                // ถ้าไม่ใช่ VIP ก็ใช้ราคารวมของรายการสินค้า (หลังปรับตามประเภท)
                 currentTotal = currentTotal.add(lineItemPriceBeforeVip);
             }
         }
@@ -57,7 +56,7 @@ public class Order {
         System.out.println("Items:");
         for (OrderItem item : orderItems) {
             BigDecimal itemPriceAfterTypeAdj = item.getItemPriceBeforeVipDiscount();
-            BigDecimal finalPricePerUnit = itemPriceAfterTypeAdj; // ราคาต่อหน่วยสุดท้ายที่จะแสดง
+            BigDecimal finalPricePerUnit = itemPriceAfterTypeAdj;
             String vipNote = "";
 
             if (customer.isVIP()) {

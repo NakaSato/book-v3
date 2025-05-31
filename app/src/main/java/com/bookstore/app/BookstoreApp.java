@@ -15,9 +15,9 @@ public class BookstoreApp {
     private static ShoppingCart shoppingCart = new ShoppingCart(); // ตะกร้าสินค้าปัจจุบัน
     private static Scanner scanner = new Scanner(System.in); // สำหรับรับอินพุต
 
-    public static void main(String[] args) { // Fixed the method signature
-        initializeInventory(); // เพิ่มหนังสือตัวอย่างเข้าคลัง
-        initializeCustomers(); // เพิ่มลูกค้าตัวอย่าง (ถ้าต้องการ)
+    public static void main(String[] args) { 
+        initializeInventory();
+        initializeCustomers(); 
 
         while (true) {
             printMainMenu();
@@ -64,32 +64,34 @@ public class BookstoreApp {
     }
 
     private static void initializeInventory() {
-      // Physical books
-      inventory.add(new PhysicalBook("978-0321765723", "Effective Java", "Joshua Bloch", new BigDecimal("45.00")));
-      inventory.add(new PhysicalBook("978-1617292545", "Grokking Algorithms", "Aditya Bhargava", new BigDecimal("40.00")));
-      inventory.add(new PhysicalBook("978-1234567890", "New Order", "Author Name", new BigDecimal("35.00")));
-      inventory.add(new PhysicalBook("978-0596007126", "Head First Design Patterns", "Eric Freeman", new BigDecimal("50.00")));
-      
-      // E-books
-      inventory.add(new EBook("978-0134685991", "Clean Code", "Robert C. Martin", new BigDecimal("30.00"))); // ราคา EBook จะถูกลด 10%
-      inventory.add(new EBook("978-1492032630", "Designing Data-Intensive Applications", "Martin Kleppmann", new BigDecimal("55.00")));
-      
-      // Audio books
-      inventory.add(new AudioBook("978-0132350884", "The Mythical Man-Month", "Frederick P. Brooks Jr.", new BigDecimal("22.00")));
-      inventory.add(new AudioBook("978-1984801258", "The Pragmatic Programmer", "David Thomas, Andrew Hunt", new BigDecimal("25.00"))); // ราคา AudioBook จะบวก 5%
+        // Physical books
+        inventory.add(new PhysicalBook("978-0684832722", "The Sovereign Individual", "James Dale Davidson", new BigDecimal("59.99")));
+        inventory.add(new PhysicalBook("978-1491954386", "Mastering Bitcoin", "Andreas M. Antonopoulos", new BigDecimal("47.50")));
+        inventory.add(new PhysicalBook("978-1492054856", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("52.75")));
+        inventory.add(new PhysicalBook("978-1544526474", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("49.99")));
+        inventory.add(new PhysicalBook("978-1544526478", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("54.99")));
+        inventory.add(new PhysicalBook("978-1337563079", "Principles of Economics (2022)", "N. Gregory Mankiw", new BigDecimal("89.95")));
+        
+        // E-books
+        inventory.add(new EBook("978-1098150097", "Bitcoin for Everyone", "Andreas M. Antonopoulos", new BigDecimal("32.99")));
+        inventory.add(new EBook("978-1492054863", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("39.99")));
+        inventory.add(new EBook("978-1544526481", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("34.99")));
+
+        // Audio books
+        inventory.add(new AudioBook("978-1098150110", "Bitcoin: The Future of Money", "Andreas M. Antonopoulos", new BigDecimal("29.95")));
+        inventory.add(new AudioBook("978-1544526488", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("39.95")));
+        inventory.add(new AudioBook("978-1099876550", "The Bitcoin Enlightenment (2025, Co-Authored)", "Various Authors", new BigDecimal("37.95")));
     }
     
     private static void initializeCustomers() {
-        // เพิ่มลูกค้าตัวอย่าง
-        customers.add(new Customer("C001", "Alice Wonderland", Customer.CustomerType.VIP));
-        customers.add(new Customer("C002", "Bob The Builder", Customer.CustomerType.GENERAL));
+        customers.add(new Customer("C001", "demo1", Customer.CustomerType.VIP));
+        customers.add(new Customer("C002", "demo2", Customer.CustomerType.GENERAL));
     }
-
 
     private static void printMainMenu() {
         System.out.println("\n--- Online Bookstore Menu ---");
         if (currentCustomer != null) {
-            System.out.println("Current Customer: " + currentCustomer.getUsername() + " (" + currentCustomer.getCustomerType() + ")");
+            System.out.println("Customer Account : " + currentCustomer.getUsername() + " (" + currentCustomer.getCustomerType() + ")");
         } else {
             System.out.println("No customer selected.");
         }
@@ -120,13 +122,10 @@ public class BookstoreApp {
             return;
         }
         for (int i = 0; i < inventory.size(); i++) {
-            // displayDetails() ในแต่ละประเภทย่อยจะแสดงราคาที่ปรับปรุงแล้ว
             System.out.println((i + 1) + ". " + inventory.get(i).displayDetails());
         }
         System.out.println("---------------------");
     }
-
-
 
     private static void selectCustomer() {
         if (customers.isEmpty()) {
@@ -171,13 +170,12 @@ public class BookstoreApp {
     }
 
     private static void checkout() {
-        // สร้าง Order object โดยส่งสำเนาของรายการในตะกร้าไป (ป้องกันการแก้ไขตะกร้าโดยตรง)
         Order order = new Order(currentCustomer, new ArrayList<>(shoppingCart.getItems()));
         order.displayOrderSummary(); // แสดงสรุปคำสั่งซื้อพร้อมราคาสุดท้าย
 
-        // ตรรกะการให้แต้มสะสมแบบง่าย:
-        // ลูกค้าทั่วไป: 1 แต้ม ต่อทุกๆ 10 หน่วยสกุลเงินที่ใช้จ่าย
-        // ลูกค้า VIP: 2 แต้ม ต่อทุกๆ 10 หน่วยสกุลเงินที่ใช้จ่าย
+        // การให้แต้มสะสม
+        // ลูกค้าทั่วไป 1 แต้ม ต่อทุกๆ 10 หน่วยสกุลเงินที่ใช้จ่าย
+        // ลูกค้า VIP 2 แต้ม ต่อทุกๆ 10 หน่วยสกุลเงินที่ใช้จ่าย
         BigDecimal amountSpent = order.getGrandTotal(); // ยอดที่จ่ายจริง
         int pointsEarnedBase = amountSpent.divide(new BigDecimal("10"), 0, RoundingMode.FLOOR).intValue();
         int pointsMultiplier = currentCustomer.isVIP() ? 2 : 1;
@@ -188,7 +186,7 @@ public class BookstoreApp {
         }
 
         System.out.println("Thank you for your order, " + currentCustomer.getUsername() + "!");
-        shoppingCart.clearCart(); // ล้างตะกร้าหลังจากการสั่งซื้อสำเร็จ
+        shoppingCart.clearCart();
     }
 
     private static void viewRecommendedBooks() {
@@ -202,11 +200,9 @@ public class BookstoreApp {
 
         for (Book book : inventory) {
             String type = book.getBookType();
-            // ใช้ calculatePrice() ซึ่งรวมการปรับราคาตามประเภทแล้ว
-            // เพื่อให้การเปรียบเทียบราคาสอดคล้องกับราคาที่ลูกค้าเห็น
-            BigDecimal currentBookPrice = book.calculatePrice(); 
+            BigDecimal currentBookPrice = book.calculatePrice();
 
-            if (!highestPriceBooks.containsKey(type) || // Fixed the syntax error
+            if (!highestPriceBooks.containsKey(type) ||
                 currentBookPrice.compareTo(highestPriceBooks.get(type).calculatePrice()) > 0) {
                 highestPriceBooks.put(type, book);
             }

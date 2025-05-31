@@ -39,11 +39,13 @@ public class Customer {
 
     public void addLoyaltyPoints(int points) {
         this.loyaltyPoints += points;
-        System.out.println(username + " earned " + points + " loyalty points. Total points: " + this.loyaltyPoints);
+        System.out.printf("%s earned %d loyalty points. Total points: %d%n", 
+                 username, points, this.loyaltyPoints);
     }
 
     @Override
     public String toString() {
-        return "ID: " + customerId + ", Username: '" + username + "', Type: " + customerType + ", Loyalty Points: " + loyaltyPoints;
+        return String.format("Customer[ID=%s, Username='%s', Type=%s, LoyaltyPoints=%d]", 
+                            customerId, username, customerType, loyaltyPoints);
     }
 }

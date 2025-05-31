@@ -13,7 +13,6 @@ public class ShoppingCart {
     }
 
     public void addItem(OrderItem item) {
-        // การเพิ่มแบบง่าย สามารถขยายเพื่อรวมจำนวนหากมีสินค้าอยู่แล้ว
         this.items.add(item);
         System.out.println("Added to cart: " + item.getQuantity() + " x " + item.getBook().getTitle());
     }

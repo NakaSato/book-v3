@@ -21,12 +21,10 @@ public class OrderItem {
         return quantity;
     }
 
-    // ราคาต่อหน่วยของสินค้านี้ (หลังการปรับตามประเภทหนังสือ แต่ก่อนส่วนลด VIP)
     public BigDecimal getItemPriceBeforeVipDiscount() {
         return book.calculatePrice();
     }
 
-    // ราคารวมสำหรับรายการสินค้านี้ (หลังการปรับตามประเภทหนังสือ แต่ก่อนส่วนลด VIP)
     public BigDecimal getLineItemTotalBeforeVipDiscount() {
         return getItemPriceBeforeVipDiscount().multiply(new BigDecimal(quantity));
     }
