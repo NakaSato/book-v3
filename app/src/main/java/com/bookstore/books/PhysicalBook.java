@@ -10,14 +10,14 @@ public class PhysicalBook extends Book {
 
     @Override
     public BigDecimal calculatePrice() {
-        // สำหรับหนังสือทั่วไป ราคาคือราคาพื้นฐาน (ยังไม่มีการปรับปรุงเฉพาะ)
+        // สำหรับหนังสือทั่วไป (PhysicalBook) จะไม่มีการปรับราคาเพิ่ม 
         return this.basePrice;
     }
 
     @Override
     public String displayDetails() {
         return " " + super.displayDetails() +
-               ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_UP);
+               ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override

@@ -7,7 +7,7 @@ public abstract class Book {
     protected String isbn;
     protected String title;
     protected String author;
-    protected BigDecimal basePrice; // ราคาพื้นฐาน
+    protected BigDecimal basePrice; // ราคาตั้งต้น
 
     public Book(String isbn, String title, String author, BigDecimal basePrice) {
         this.isbn = isbn;
@@ -37,7 +37,7 @@ public abstract class Book {
 
     public String displayDetails() {
         return "ISBN: " + isbn + ", Title: '" + title + "', Author: '" + author +
-               "', Base Price: $" + basePrice.setScale(2, RoundingMode.HALF_UP);
+               "', Base Price: $" + basePrice.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     // เมธอดเสริมสำหรับช่วยในการแสดงประเภทหนังสือ

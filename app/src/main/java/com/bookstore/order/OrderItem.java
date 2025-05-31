@@ -31,6 +31,6 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return quantity + " x '" + book.getTitle() + "' @ $" + getItemPriceBeforeVipDiscount().setScale(2, RoundingMode.HALF_UP) + " each";
+        return quantity + " x '" + book.getTitle() + "' @ $" + getItemPriceBeforeVipDiscount().setScale(2, RoundingMode.HALF_EVEN) + " each";
     }
 }

@@ -45,11 +45,11 @@ public class ShoppingCart {
             System.out.println((i + 1) + ". " + item.getBook().getTitle() +
                                " (Type: " + item.getBook().getBookType() + ")" +
                                " - Qty: " + item.getQuantity() +
-                               " - Price per unit (after type adj.): $" + item.getItemPriceBeforeVipDiscount().setScale(2, RoundingMode.HALF_UP) +
-                               " - Line Total (before VIP): $" + item.getLineItemTotalBeforeVipDiscount().setScale(2, RoundingMode.HALF_UP));
+                               " - Price per unit (after type adj.): $" + item.getItemPriceBeforeVipDiscount().setScale(2, RoundingMode.HALF_EVEN) +
+                               " - Line Total (before VIP): $" + item.getLineItemTotalBeforeVipDiscount().setScale(2, RoundingMode.HALF_EVEN));
         }
         System.out.println("---------------------");
-        System.out.println("Subtotal (before VIP discount): $" + calculateSubTotalBeforeVipDiscount().setScale(2, RoundingMode.HALF_UP));
+        System.out.println("Subtotal (before VIP discount): $" + calculateSubTotalBeforeVipDiscount().setScale(2, RoundingMode.HALF_EVEN));
         System.out.println("---------------------");
     }
 }

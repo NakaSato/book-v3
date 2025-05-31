@@ -213,7 +213,7 @@ public class BookstoreApp {
         } else {
             highestPriceBooks.forEach((type, book) -> 
                 System.out.println("Highest priced " + type + ": " + book.getTitle() + 
-                                   " at $" + book.calculatePrice().setScale(2, RoundingMode.HALF_UP))
+                                   " at $" + book.calculatePrice().setScale(2, RoundingMode.HALF_EVEN))
             );
         }
         System.out.println("--------------------------------------------------");

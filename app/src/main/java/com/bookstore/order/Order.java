@@ -62,17 +62,17 @@ public class Order {
             if (customer.isVIP()) {
                 BigDecimal vipDiscountAmount = itemPriceAfterTypeAdj.multiply(VIP_DISCOUNT_RATE);
                 finalPricePerUnit = itemPriceAfterTypeAdj.subtract(vipDiscountAmount);
-                vipNote = " (VIP Price: $" + finalPricePerUnit.setScale(2, RoundingMode.HALF_UP) +
-                          ", Original Item Price (after type adj.): $" + itemPriceAfterTypeAdj.setScale(2, RoundingMode.HALF_UP) + ")";
+                vipNote = " (VIP Price: $" + finalPricePerUnit.setScale(2, RoundingMode.HALF_EVEN) +
+                          ", Original Item Price (after type adj.): $" + itemPriceAfterTypeAdj.setScale(2, RoundingMode.HALF_EVEN) + ")";
             }
 
             System.out.println("  - " + item.getQuantity() + " x " + item.getBook().getTitle() +
-                               " @ $" + finalPricePerUnit.setScale(2, RoundingMode.HALF_UP) + " each" + vipNote);
+                               " @ $" + finalPricePerUnit.setScale(2, RoundingMode.HALF_EVEN) + " each" + vipNote);
         }
         if (customer.isVIP() && totalVipDiscountApplied.compareTo(BigDecimal.ZERO) > 0) {
-            System.out.println("Total VIP Discount Applied: $" + totalVipDiscountApplied.setScale(2, RoundingMode.HALF_UP));
+            System.out.println("Total VIP Discount Applied: $" + totalVipDiscountApplied.setScale(2, RoundingMode.HALF_EVEN));
         }
-        System.out.println("Grand Total: $" + grandTotal.setScale(2, RoundingMode.HALF_UP));
+        System.out.println("Grand Total: $" + grandTotal.setScale(2, RoundingMode.HALF_EVEN));
         System.out.println("--------------------");
     }
 

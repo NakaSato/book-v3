@@ -20,7 +20,7 @@ public class EBook extends Book {
     public String displayDetails() {
         return " " + super.displayDetails() +
                ", Discount: 10%" +
-               ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_UP);
+               ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override
