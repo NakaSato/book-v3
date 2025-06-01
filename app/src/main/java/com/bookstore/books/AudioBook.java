@@ -19,8 +19,8 @@ public class AudioBook extends Book {
     @Override
     public String displayDetails() {
         return " " + super.displayDetails() +
-               ", Fee: 5%" +
-               ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_EVEN);
+                ", Fee: 5%" +
+                ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override

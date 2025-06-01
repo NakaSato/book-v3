@@ -1,12 +1,21 @@
 package com.bookstore.app;
 
-import com.bookstore.books.*;
-import com.bookstore.customer.Customer;
-import com.bookstore.order.*;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+import com.bookstore.books.AudioBook;
+import com.bookstore.books.Book;
+import com.bookstore.books.EBook;
+import com.bookstore.books.PhysicalBook;
+import com.bookstore.customer.Customer;
+import com.bookstore.order.Order;
+import com.bookstore.order.OrderItem;
+import com.bookstore.order.ShoppingCart;
 
 public class BookstoreApp {
     private static List<Book> inventory = new ArrayList<>(); // รายการหนังสือในคลัง
@@ -15,9 +24,9 @@ public class BookstoreApp {
     private static ShoppingCart shoppingCart = new ShoppingCart(); // ตะกร้าสินค้าปัจจุบัน
     private static Scanner scanner = new Scanner(System.in); // สำหรับรับอินพุต
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         initializeInventory();
-        initializeCustomers(); 
+        initializeCustomers();
 
         while (true) {
             printMainMenu();
@@ -64,25 +73,106 @@ public class BookstoreApp {
     }
 
     private static void initializeInventory() {
-        // Physical books
-        inventory.add(new PhysicalBook("978-0684832722", "The Sovereign Individual", "James Dale Davidson", new BigDecimal("59.99"), "320", "Hardcover", "1997"));
-        inventory.add(new PhysicalBook("978-1491954386", "Mastering Bitcoin", "Andreas M. Antonopoulos", new BigDecimal("47.50"), "300", "Paperback", "2017"));
-        inventory.add(new PhysicalBook("978-1492054856", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("52.75"), "250", "Paperback", "2018"));
-        inventory.add(new PhysicalBook("978-1544526474", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("49.99"), "400", "Hardcover", "2018"));
-        inventory.add(new PhysicalBook("978-1544526478", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("54.99"), "350", "Hardcover", "2021"));
-        inventory.add(new PhysicalBook("978-1337563079", "Principles of Economics (2022)", "N. Gregory Mankiw", new BigDecimal("89.95"), "500", "Hardcover", "2022"));
+        // Physical Books
+        inventory.add(new PhysicalBook(
+                "978-0684832722",
+                "The Sovereign Individual",
+                "James Dale Davidson",
+                new BigDecimal("59.99"),
+                "320",
+                "Hardcover",
+                "1997"));
 
-        // E-books
-        inventory.add(new EBook("978-1098150097", "Bitcoin for Everyone", "Andreas M. Antonopoulos", new BigDecimal("32.99"), "2020"));
-        inventory.add(new EBook("978-1492054863", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("39.99"), "2018"));
-        inventory.add(new EBook("978-1544526481", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("34.99"), "2018"));
+        inventory.add(new PhysicalBook(
+                "978-1491954386",
+                "Mastering Bitcoin",
+                "Andreas M. Antonopoulos",
+                new BigDecimal("47.50"),
+                "300",
+                "Paperback",
+                "2017"));
 
-        // Audio books
-        inventory.add(new AudioBook("978-1098150110", "Bitcoin: The Future of Money", "Andreas M. Antonopoulos", new BigDecimal("29.95"), "2020"));
-        inventory.add(new AudioBook("978-1544526488", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("39.95"), "2021"));
-        inventory.add(new AudioBook("978-1099876550", "The Bitcoin Enlightenment (2025, Co-Authored)", "Various Authors", new BigDecimal("37.95"), "2025"));
+        inventory.add(new PhysicalBook(
+                "978-1492054856",
+                "Mastering the Lightning Network",
+                "Andreas M. Antonopoulos",
+                new BigDecimal("52.75"),
+                "250",
+                "Paperback",
+                "2018"));
+
+        inventory.add(new PhysicalBook(
+                "978-1544526474",
+                "The Bitcoin Standard",
+                "Saifedean Ammous",
+                new BigDecimal("49.99"),
+                "400",
+                "Hardcover",
+                "2018"));
+
+        inventory.add(new PhysicalBook(
+                "978-1544526478",
+                "The Fiat Standard",
+                "Saifedean Ammous",
+                new BigDecimal("54.99"),
+                "350",
+                "Hardcover",
+                "2021"));
+
+        inventory.add(new PhysicalBook(
+                "978-1337563079",
+                "Principles of Economics (2022)",
+                "N. Gregory Mankiw",
+                new BigDecimal("89.95"),
+                "500",
+                "Hardcover",
+                "2022"));
+
+        // E-Books
+        inventory.add(new EBook(
+                "978-1098150097",
+                "Bitcoin for Everyone",
+                "Andreas M. Antonopoulos",
+                new BigDecimal("32.99"),
+                "2020"));
+
+        inventory.add(new EBook(
+                "978-1492054863",
+                "Mastering the Lightning Network",
+                "Andreas M. Antonopoulos",
+                new BigDecimal("39.99"),
+                "2018"));
+
+        inventory.add(new EBook(
+                "978-1544526481",
+                "The Bitcoin Standard",
+                "Saifedean Ammous",
+                new BigDecimal("34.99"),
+                "2018"));
+
+        // Audio Books
+        inventory.add(new AudioBook(
+                "978-1098150110",
+                "Bitcoin: The Future of Money",
+                "Andreas M. Antonopoulos",
+                new BigDecimal("29.95"),
+                "2020"));
+
+        inventory.add(new AudioBook(
+                "978-1544526488",
+                "The Fiat Standard",
+                "Saifedean Ammous",
+                new BigDecimal("39.95"),
+                "2021"));
+
+        inventory.add(new AudioBook(
+                "978-1099876550",
+                "The Bitcoin Enlightenment (2025, Co-Authored)",
+                "Various Authors",
+                new BigDecimal("37.95"),
+                "2025"));
     }
-    
+
     private static void initializeCustomers() {
         customers.add(new Customer("C001", "demo1", Customer.CustomerType.VIP));
         customers.add(new Customer("C002", "demo2", Customer.CustomerType.GENERAL));
@@ -91,7 +181,8 @@ public class BookstoreApp {
     private static void printMainMenu() {
         System.out.println("\n--- Online Bookstore Menu ---");
         if (currentCustomer != null) {
-            System.out.println("Customer Account : " + currentCustomer.getUsername() + " (" + currentCustomer.getCustomerType() + ")");
+            System.out.println("Customer Account : " + currentCustomer.getUsername() + " ("
+                    + currentCustomer.getCustomerType() + ")");
         } else {
             System.out.println("No customer selected.");
         }
@@ -149,7 +240,8 @@ public class BookstoreApp {
 
     private static void addBookToCart() {
         viewBooks();
-        if (inventory.isEmpty()) return;
+        if (inventory.isEmpty())
+            return;
 
         System.out.print("Enter book number to add to cart: ");
         int bookChoice = getUserChoice();
@@ -180,7 +272,7 @@ public class BookstoreApp {
         int pointsEarnedBase = amountSpent.divide(new BigDecimal("10"), 0, RoundingMode.FLOOR).intValue();
         int pointsMultiplier = currentCustomer.isVIP() ? 2 : 1;
         int totalPointsEarned = pointsEarnedBase * pointsMultiplier;
-        
+
         if (totalPointsEarned > 0) {
             currentCustomer.addLoyaltyPoints(totalPointsEarned);
         }
@@ -203,7 +295,7 @@ public class BookstoreApp {
             BigDecimal currentBookPrice = book.calculatePrice();
 
             if (!highestPriceBooks.containsKey(type) ||
-                currentBookPrice.compareTo(highestPriceBooks.get(type).calculatePrice()) > 0) {
+                    currentBookPrice.compareTo(highestPriceBooks.get(type).calculatePrice()) > 0) {
                 highestPriceBooks.put(type, book);
             }
         }
@@ -211,10 +303,9 @@ public class BookstoreApp {
         if (highestPriceBooks.isEmpty()) {
             System.out.println("Could not determine recommendations.");
         } else {
-            highestPriceBooks.forEach((type, book) -> 
-                System.out.println("Highest priced " + type + ": " + book.getTitle() + 
-                                   " at $" + book.calculatePrice().setScale(2, RoundingMode.HALF_EVEN))
-            );
+            highestPriceBooks
+                    .forEach((type, book) -> System.out.println("Highest priced " + type + ": " + book.getTitle() +
+                            " at $" + book.calculatePrice().setScale(2, RoundingMode.HALF_EVEN)));
         }
         System.out.println("--------------------------------------------------");
     }
