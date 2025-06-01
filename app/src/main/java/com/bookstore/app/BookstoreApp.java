@@ -245,7 +245,7 @@ public class BookstoreApp {
 
         System.out.print("Enter book number to add to cart: ");
         int bookChoice = getUserChoice();
-        if (bookChoice <= 0 || bookChoice > inventory.size()) { // Fixed the syntax error
+        if (bookChoice <= 0 || bookChoice > inventory.size()) {
             System.out.println("Invalid book selection.");
             return;
         }
