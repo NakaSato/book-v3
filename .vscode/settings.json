@@ -6,6 +6,6 @@
   "java.saveActions.organizeImports": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
+    "source.organizeImports": "explicit"
   }
 }
