@@ -43,7 +43,7 @@ public abstract class Book {
 
     public String displayDetails() {
         return "ISBN: " + isbn + ", Title: '" + title + "', Author: '" + author +
-               "', Base Price: $" + basePrice.setScale(2, RoundingMode.HALF_EVEN);
+               "', Publish Year: " + publishYear + ", Base Price: $" + basePrice.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     // เมธอดเสริมสำหรับช่วยในการแสดงประเภทหนังสือ

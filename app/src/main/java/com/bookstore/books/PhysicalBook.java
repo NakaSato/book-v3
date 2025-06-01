@@ -30,6 +30,8 @@ public class PhysicalBook extends Book {
     @Override
     public String displayDetails() {
         return " " + super.displayDetails() +
+                ", Page Number: " + pageNumber +
+                ", Cover Type: " + coverType +
                ", Final Price (after type adjustment): $" + calculatePrice().setScale(2, RoundingMode.HALF_EVEN);
     }
 

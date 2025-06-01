@@ -65,22 +65,22 @@ public class BookstoreApp {
 
     private static void initializeInventory() {
         // Physical books
-        inventory.add(new PhysicalBook("978-0684832722", "The Sovereign Individual", "James Dale Davidson", new BigDecimal("59.99")));
-        inventory.add(new PhysicalBook("978-1491954386", "Mastering Bitcoin", "Andreas M. Antonopoulos", new BigDecimal("47.50")));
-        inventory.add(new PhysicalBook("978-1492054856", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("52.75")));
-        inventory.add(new PhysicalBook("978-1544526474", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("49.99")));
-        inventory.add(new PhysicalBook("978-1544526478", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("54.99")));
-        inventory.add(new PhysicalBook("978-1337563079", "Principles of Economics (2022)", "N. Gregory Mankiw", new BigDecimal("89.95")));
-        
+        inventory.add(new PhysicalBook("978-0684832722", "The Sovereign Individual", "James Dale Davidson", new BigDecimal("59.99"), "320", "Hardcover", "1997"));
+        inventory.add(new PhysicalBook("978-1491954386", "Mastering Bitcoin", "Andreas M. Antonopoulos", new BigDecimal("47.50"), "300", "Paperback", "2017"));
+        inventory.add(new PhysicalBook("978-1492054856", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("52.75"), "250", "Paperback", "2018"));
+        inventory.add(new PhysicalBook("978-1544526474", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("49.99"), "400", "Hardcover", "2018"));
+        inventory.add(new PhysicalBook("978-1544526478", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("54.99"), "350", "Hardcover", "2021"));
+        inventory.add(new PhysicalBook("978-1337563079", "Principles of Economics (2022)", "N. Gregory Mankiw", new BigDecimal("89.95"), "500", "Hardcover", "2022"));
+
         // E-books
-        inventory.add(new EBook("978-1098150097", "Bitcoin for Everyone", "Andreas M. Antonopoulos", new BigDecimal("32.99")));
-        inventory.add(new EBook("978-1492054863", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("39.99")));
-        inventory.add(new EBook("978-1544526481", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("34.99")));
+        inventory.add(new EBook("978-1098150097", "Bitcoin for Everyone", "Andreas M. Antonopoulos", new BigDecimal("32.99"), "2020"));
+        inventory.add(new EBook("978-1492054863", "Mastering the Lightning Network", "Andreas M. Antonopoulos", new BigDecimal("39.99"), "2018"));
+        inventory.add(new EBook("978-1544526481", "The Bitcoin Standard", "Saifedean Ammous", new BigDecimal("34.99"), "2018"));
 
         // Audio books
-        inventory.add(new AudioBook("978-1098150110", "Bitcoin: The Future of Money", "Andreas M. Antonopoulos", new BigDecimal("29.95")));
-        inventory.add(new AudioBook("978-1544526488", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("39.95")));
-        inventory.add(new AudioBook("978-1099876550", "The Bitcoin Enlightenment (2025, Co-Authored)", "Various Authors", new BigDecimal("37.95")));
+        inventory.add(new AudioBook("978-1098150110", "Bitcoin: The Future of Money", "Andreas M. Antonopoulos", new BigDecimal("29.95"), "2020"));
+        inventory.add(new AudioBook("978-1544526488", "The Fiat Standard", "Saifedean Ammous", new BigDecimal("39.95"), "2021"));
+        inventory.add(new AudioBook("978-1099876550", "The Bitcoin Enlightenment (2025, Co-Authored)", "Various Authors", new BigDecimal("37.95"), "2025"));
     }
     
     private static void initializeCustomers() {
