@@ -7,13 +7,15 @@ public abstract class Book {
     protected String isbn;
     protected String title;
     protected String author;
+    protected String publishYear; // ปีที่ตีพิมพ์ (อาจจะใช้ในอนาคต)
     protected BigDecimal basePrice; // ราคาตั้งต้น
 
-    public Book(String isbn, String title, String author, BigDecimal basePrice) {
+    public Book(String isbn, String title, String author, BigDecimal basePrice, String publishYear) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.basePrice = basePrice;
+        this.publishYear = publishYear;
     }
 
     public String getIsbn() {
@@ -30,6 +32,10 @@ public abstract class Book {
 
     public BigDecimal getBasePrice() {
         return basePrice;
+    }
+
+    public String getPublishYear() {
+        return publishYear;
     }
 
     // คำนวณราคาหลังจากการปรับปรุงตามประเภทหนังสือ (เช่น ส่วนลด E-book, ค่าธรรมเนียม Audiobook)

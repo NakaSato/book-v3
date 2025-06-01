@@ -6,8 +6,8 @@ import java.math.RoundingMode;
 public class AudioBook extends Book {
     private static final BigDecimal FEE_RATE = new BigDecimal("0.05"); // ค่าธรรมเนียม 5%
 
-    public AudioBook(String isbn, String title, String author, BigDecimal basePrice) {
-        super(isbn, title, author, basePrice);
+    public AudioBook(String isbn, String title, String author, BigDecimal basePrice, String publishYear) {
+        super(isbn, title, author, basePrice, publishYear);
     }
 
     @Override

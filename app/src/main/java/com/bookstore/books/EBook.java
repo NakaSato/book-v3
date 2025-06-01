@@ -6,8 +6,8 @@ import java.math.RoundingMode;
 public class EBook extends Book {
     private static final BigDecimal DISCOUNT_RATE = new BigDecimal("0.10"); // ส่วนลด 10%
 
-    public EBook(String isbn, String title, String author, BigDecimal basePrice) {
-        super(isbn, title, author, basePrice);
+    public EBook(String isbn, String title, String author, BigDecimal basePrice, String publishYear) {
+        super(isbn, title, author, basePrice, publishYear);
     }
 
     @Override
